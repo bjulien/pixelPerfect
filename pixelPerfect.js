@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var PixelPerfect = function(upload) {
+  var PixelPerfect = function() {
     var optionsLayout = {
       display: true,
       text: "Drop Image",
@@ -41,7 +41,7 @@
 
         // change value for move
         document.querySelector('.pixelMove').addEventListener('change', function() {
-          optionsLayout.move = (document.querySelector('.pixelMove') != null) ? document.querySelector('.pixelMove').value : optionsLayout.move
+          optionsLayout.move = (document.querySelector('.pixelMove') !== null) ? document.querySelector('.pixelMove').value : optionsLayout.move;
         }, false);
 
         // on drag, move img
@@ -54,7 +54,7 @@
           var setPosition = function(e) {
             img.style.top  = ( initialized.y + e.pageY ) + 'px';
             img.style.left = ( initialized.x + e.pageX ) + 'px';
-          }
+          };
 
           document.addEventListener('mousemove', setPosition, false);
           document.addEventListener('mouseup', function() {
@@ -73,23 +73,23 @@
         optionsLayout.zone.addEventListener('keydown', function(e) {
 
           if ( e.keyCode == 40) {
-            positionTop += parseInt( optionsLayout.move, 10 )
+            positionTop += parseInt( optionsLayout.move, 10 );
           }
           if ( e.keyCode == 38) {
-            positionTop -= parseInt( optionsLayout.move, 10 )
+            positionTop -= parseInt( optionsLayout.move, 10 );
           }
           if ( e.keyCode == 37) {
-            positionLeft -= parseInt( optionsLayout.move, 10 )
+            positionLeft -= parseInt( optionsLayout.move, 10 );
           }
           if ( e.keyCode == 39) {
-            positionLeft += parseInt( optionsLayout.move, 10 )
+            positionLeft += parseInt( optionsLayout.move, 10 );
           }
 
           img.style.top  = positionTop + 'px';
           img.style.left = positionLeft + 'px';
         });
       }
-    }
+    };
   };
 
   // upload image
@@ -105,9 +105,9 @@
         thumbnails.addEventListener('dragleave', this.onDragLeave, false);
         thumbnails.addEventListener('drop', this.onDrop, false);
 
-        this.onDragEnter;
-        this.onDragOver;
-        this.onDragLeave;
+        this.onDragEnter();
+        this.onDragOver();
+        this.onDragLeave();
       },
 
       // drag and drop
@@ -174,11 +174,11 @@
 
         return false;
       }
-    }
+    };
   };
 
-  var pixel = PixelPerfect();
-  var upload = UploadImage();
+  var pixel = new PixelPerfect();
+  var upload = new UploadImage();
 
   pixel.init();
   upload.init();
